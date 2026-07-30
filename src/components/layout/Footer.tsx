@@ -74,7 +74,7 @@ export const Footer: React.FC<FooterProps> = ({ setCurrentPage, openContactModal
             </div>
             
             <p className="text-sm text-white/50 leading-relaxed max-w-sm">
-              CodeNexAnkit is a global software engineering firm architecting sub-second web applications, mobile apps, custom AI models, and cloud infrastructure.
+              CodeNexAnkit is a software engineering firm architecting sub-second web applications, mobile apps, custom AI models, and cloud infrastructure.
             </p>
 
             {/* Newsletter Subscription */}
@@ -166,7 +166,7 @@ export const Footer: React.FC<FooterProps> = ({ setCurrentPage, openContactModal
           {/* Column 4: Global Hubs & Legal */}
           <div>
             <h3 className="text-xs font-bold text-[#FFD700] uppercase tracking-wider mb-4 font-mono">
-              Global Presence
+              Professional Journey & Experience
             </h3>
             <div className="space-y-3 text-xs">
               {COMPANY_INFO.offices.map((office, idx) => (
