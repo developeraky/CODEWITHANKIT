@@ -1,0 +1,68 @@
+{
+  "entities": {
+    "lead": {
+      "title": "Lead",
+      "description": "Captured project discovery leads and consultations",
+      "type": "object",
+      "properties": {
+        "name": { "type": "string", "maxLength": 100 },
+        "email": { "type": "string", "format": "email", "maxLength": 150 },
+        "phone": { "type": "string", "maxLength": 30 },
+        "company": { "type": "string", "maxLength": 100 },
+        "serviceNeeded": { "type": "string", "maxLength": 100 },
+        "budget": { "type": "string", "maxLength": 50 },
+        "preferredDate": { "type": "string", "maxLength": 30 },
+        "preferredTime": { "type": "string", "maxLength": 30 },
+        "message": { "type": "string", "maxLength": 2000 },
+        "score": { "type": "number" },
+        "status": { "type": "string", "enum": ["New", "Contacted", "Qualified", "Proposal", "Closed"] },
+        "createdAt": { "type": "string", "maxLength": 50 },
+        "userId": { "type": "string", "maxLength": 128 }
+      },
+      "required": ["name", "email", "serviceNeeded"]
+    },
+    "booking": {
+      "title": "Booking",
+      "description": "Reserved consultation slots and calendar appointments",
+      "type": "object",
+      "properties": {
+        "date": { "type": "string", "maxLength": 30 },
+        "time": { "type": "string", "maxLength": 30 },
+        "name": { "type": "string", "maxLength": 100 },
+        "email": { "type": "string", "format": "email", "maxLength": 150 },
+        "company": { "type": "string", "maxLength": 100 },
+        "projectType": { "type": "string", "maxLength": 100 },
+        "createdAt": { "type": "string", "maxLength": 50 },
+        "userId": { "type": "string", "maxLength": 128 }
+      },
+      "required": ["date", "time", "name", "email"]
+    },
+    "workspaceSync": {
+      "title": "WorkspaceSync",
+      "description": "User specific Google Workspace sync state and settings",
+      "type": "object",
+      "properties": {
+        "userId": { "type": "string", "maxLength": 128 },
+        "spreadsheetId": { "type": "string", "maxLength": 200 },
+        "chatSpaceId": { "type": "string", "maxLength": 200 },
+        "formId": { "type": "string", "maxLength": 200 },
+        "lastSyncedAt": { "type": "string", "maxLength": 50 }
+      },
+      "required": ["userId"]
+    }
+  },
+  "firestore": {
+    "/leads/{leadId}": {
+      "schema": { "$ref": "#/entities/lead" },
+      "description": "Store leads captured from the discovery form and Google Forms"
+    },
+    "/bookings/{bookingId}": {
+      "schema": { "$ref": "#/entities/booking" },
+      "description": "Store direct consultation appointments"
+    },
+    "/workspaceSync/{userId}": {
+      "schema": { "$ref": "#/entities/workspaceSync" },
+      "description": "Google Workspace sync configuration per user"
+    }
+  }
+}

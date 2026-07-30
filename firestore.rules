@@ -1,0 +1,65 @@
+rules_version = '2';
+
+service cloud.firestore {
+  match /databases/{database}/documents {
+
+    // Default Deny Catch-All
+    match /{document=**} {
+      allow read, write: if false;
+    }
+
+    // Helper functions
+    function isSignedIn() {
+      return request.auth != null;
+    }
+
+    function isOwner(userId) {
+      return isSignedIn() && request.auth.uid == userId;
+    }
+
+    function isValidId(id) {
+      return id is string && id.size() > 0 && id.size() <= 128 && id.matches('^[a-zA-Z0-9_\\-]+$'); }
+
+    function incoming() {
+      return request.resource.data;
+    }
+
+    function existing() {
+      return resource.data;
+    }
+
+    function isValidLead(data) {
+      return data.name is string && data.name.size() > 0 && data.name.size() <= 100
+        && data.email is string && data.email.size() > 0 && data.email.size() <= 150
+        && data.serviceNeeded is string && data.serviceNeeded.size() <= 100
+        && (!('company' in data) || (data.company is string && data.company.size() <= 100))
+        && (!('phone' in data) || (data.phone is string && data.phone.size() <= 30))
+        && (!('budget' in data) || (data.budget is string && data.budget.size() <= 50))
+        && (!('message' in data) || (data.message is string && data.message.size() <= 2000));
+    }
+
+    function isValidBooking(data) {
+      return data.name is string && data.name.size() > 0 && data.name.size() <= 100
+        && data.email is string && data.email.size() > 0 && data.email.size() <= 150
+        && data.date is string && data.date.size() <= 30
+        && data.time is string && data.time.size() <= 30;
+    }
+
+    // Leads collection
+    match /leads/{leadId} {
+      allow create: if isValidId(leadId) && isValidLead(incoming());
+      allow read, list, update, delete: if isSignedIn();
+    }
+
+    // Bookings collection
+    match /bookings/{bookingId} {
+      allow create: if isValidId(bookingId) && isValidBooking(incoming());
+      allow read, list, update, delete: if isSignedIn();
+    }
+
+    // Workspace Sync collection
+    match /workspaceSync/{userId} {
+      allow read, write: if isValidId(userId) && isOwner(userId);
+    }
+  }
+}

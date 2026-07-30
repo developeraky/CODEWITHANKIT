@@ -1,0 +1,11 @@
+{
+  "projectId": "prismatic-mesh-n6rpq",
+  "appId": "1:668543632960:web:79797a7db102dc66b881a5",
+  "apiKey": "${VITE_FIREBASE_API_KEY}",
+  "authDomain": "prismatic-mesh-n6rpq.firebaseapp.com",
+  "storageBucket": "prismatic-mesh-n6rpq.firebasestorage.app",
+  "messagingSenderId": "668543632960",
+  "measurementId": "",
+  "oAuthClientId": "668543632960-rhcja4ijda4j5tlc9hfbft3v2i4pjg1a.apps.googleusercontent.com",
+  "recaptchaSiteKey": ""
+}
