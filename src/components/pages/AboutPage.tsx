@@ -126,7 +126,7 @@ export const AboutPage: React.FC<AboutPageProps> = ({ setCurrentPage, openContac
           </div>
 
           <h1 className="text-4xl sm:text-5xl font-extrabold tracking-tight text-white">
-            Architecting <span className="text-amber-400">Next-Gen Software</span> Since 2018.
+            Architecting <span className="text-amber-400">Next-Gen Software</span> Since 2021.
           </h1>
 
           <p className="text-sm sm:text-base text-zinc-400 leading-relaxed">
