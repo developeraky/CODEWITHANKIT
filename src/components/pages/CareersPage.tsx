@@ -54,7 +54,7 @@ export const CareersPage: React.FC = () => {
         <div className="text-center max-w-3xl mx-auto space-y-4">
           <div className="inline-flex items-center space-x-2 px-3 py-1 rounded-full bg-amber-500/10 border border-amber-500/30 text-xs font-mono text-amber-400">
             <Sparkles className="w-3.5 h-3.5" />
-            <span>Join Our Global Engineering Team</span>
+            <span>Join Our Engineering Team</span>
           </div>
 
           <h1 className="text-4xl sm:text-5xl font-extrabold tracking-tight text-white">
